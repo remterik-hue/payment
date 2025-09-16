@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Submission</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .result {
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        h2 {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <h2>Submitted Information</h2>
+    <div class="result">
+        <p><strong>Name:</strong> <span id="name"></span></p>
+        <p><strong>Address:</strong> <span id="address"></span></p>
+        <p><strong>State:</strong> <span id="state"></span></p>
+        <p><strong>City:</strong> <span id="city"></span></p>
+        <p><strong>Zip Code:</strong> <span id="zipcode"></span></p>
+    </div>
+
+    <script>
+        // Function to get URL parameters
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                name: params.get('name') || 'Not provided',
+                address: params.get('address') || 'Not provided',
+                state: params.get('state') || 'Not provided',
+                city: params.get('city') || 'Not provided',
+                zipcode: params.get('zipcode') || 'Not provided'
+            };
+        }
+
+        // Display the form data
+        const params = getQueryParams();
+        document.getElementById('name').textContent = params.name;
+        document.getElementById('address').textContent = params.address;
+        document.getElementById('state').textContent = params.state;
+        document.getElementById('city').textContent = params.city;
+        document.getElementById('zipcode').textContent = params.zipcode;
+
+        // Save to localStorage (simulating data saving)
+        localStorage.setItem('formData', JSON.stringify(params));
+    </script>
+</body>
+</html>
